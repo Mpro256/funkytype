@@ -10,7 +10,7 @@ import * as PSA from "./elements/psa";
 import * as ConnectionState from "./states/connection";
 import { Workbox } from "workbox-window";
 import * as FunboxList from "./test/funbox/funbox-list";
-//@ts-ignore
+//@ts-expect-error
 import Konami from "konami";
 import { log } from "./controllers/analytics-controller";
 import { envConfig } from "./constants/env-config";
@@ -37,7 +37,7 @@ void UpdateConfig.loadFromLocalStorage();
 Focus.set(true, true);
 
 $(document).ready(() => {
-  Misc.loadCSS("/./css/select2.min.css", true);
+  Misc.loadCSS("/./css/slimselect.min.css", true);
   Misc.loadCSS("/./css/balloon.min.css", true);
   Misc.loadCSS("/./css/fa.min.css", true);
 

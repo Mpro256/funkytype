@@ -28,7 +28,6 @@ import * as TestWords from "../test/test-words";
 import * as Hangul from "hangul-js";
 import * as CustomTextState from "../states/custom-text-name";
 import * as FunboxList from "../test/funbox/funbox-list";
-import * as Settings from "../pages/settings";
 import * as KeymapEvent from "../observables/keymap-event";
 import { IgnoredKeys } from "../constants/ignored-keys";
 import { ModifierKeys } from "../constants/modifier-keys";
@@ -152,7 +151,7 @@ function backspaceToPrevious(): void {
   if (Config.mode === "zen") {
     TimerProgress.update();
 
-    const els: HTMLElement[] = (document.querySelector("#words")?.children ||
+    const els = (document.querySelector("#words")?.children ??
       []) as HTMLElement[];
 
     for (let i = els.length - 1; i >= 0; i--) {
@@ -193,7 +192,6 @@ function handleSpace(): void {
       f.functions.handleSpace();
     }
   }
-  Settings.groups["layout"]?.updateInput();
 
   dontInsertSpace = true;
 
@@ -661,7 +659,7 @@ function handleChar(
   //update the active word top, but only once
   if (testInputLength === 1 && TestWords.words.currentIndex === 0) {
     TestUI.setActiveWordTop(
-      (<HTMLElement>document.querySelector("#words .active"))?.offsetTop
+      (document.querySelector("#words .active") as HTMLElement)?.offsetTop
     );
   }
 
@@ -1298,7 +1296,7 @@ $("#wordsInput").on("input", (event) => {
     if (containsChinese) {
       if (
         currTestInput.length - inputValue.length <= 2 &&
-        currTestInput.slice(0, currTestInput.length) === currTestInput
+        currTestInput.startsWith(currTestInput)
       ) {
         TestInput.input.current = inputValue;
       } else {

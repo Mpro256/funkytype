@@ -3,7 +3,6 @@
 import "jquery";
 import "jquery-color";
 import "jquery.easing";
-import "select2";
 
 import "../styles/index.scss";
 import "./firebase";
@@ -74,6 +73,6 @@ extendedGlobal.egVideoListener = egVideoListener;
 extendedGlobal.toggleDebugLogs = Logger.toggleDebugLogs;
 
 if (isDevEnvironment()) {
-  //@ts-ignore
+  //@ts-expect-error
   extendedGlobal.$ = $;
 }
